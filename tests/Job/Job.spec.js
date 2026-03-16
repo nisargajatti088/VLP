@@ -28,16 +28,33 @@ test('Page PLaywright test',async ({page})=>
     await page.waitForTimeout(1000);
     await page.locator(".end-0").click()
     await page.locator(".mat-pseudo-checkbox").first().click();
-    await page.locator('#mat-menu-panel-11').waitFor({ state: 'hidden' });
-    await page.waitForTimeout(1000);
-    await page.keyboard.press('Escape');
+    await page.reload();
 
-    // await page.locator(".bi-funnel").nth(2).click();
-    // await page.locator("input[type='text']").pressSequentially("Dav",{delay :150});
-    // await page.locator(".mat-pseudo-checkbox").click();
-    // await page.waitForTimeout(1000);
-    // await page.locator(".end-0").click()
-    // await page.locator(".mat-pseudo-checkbox").first().click();
-    // await page.keyboard.press('Escape');
+    await page.locator(".bi-funnel").nth(2).click();
+    await page.locator("input[type='text']").pressSequentially("Dav",{delay :150});
+    await page.locator(".mat-pseudo-checkbox").first().click();
+    await page.waitForTimeout(1000);
+    await page.locator(".end-0").click()
+    await page.locator(".mat-pseudo-checkbox").first().click();
+    await page.reload();
+
+    await page.locator(".bi-funnel").nth(3).click();
+    await page.locator("input[type='text']").pressSequentially("Nav",{delay :150});
+    await page.locator('mat-pseudo-checkbox.mat-pseudo-checkbox.ng-star-inserted').first().click();
+    await page.waitForTimeout(1000);
+    await page.locator(".end-0").click()
+    await page.locator(".mat-pseudo-checkbox").first().click();
+    await page.reload();
+
+    await page.locator(".bi-funnel").nth(4).click();
+    await page.locator("input[type='text']").pressSequentially("Job",{delay :150});
+    await page.locator('mat-pseudo-checkbox').first().click();
+    await page.locator(".end-0").click()
+    await page.locator(".mat-pseudo-checkbox").first().click();
+    await page.reload();
+
+
+
+
 
 });
