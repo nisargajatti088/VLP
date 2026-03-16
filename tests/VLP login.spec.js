@@ -3,21 +3,21 @@ const {test,expect} = require('@playwright/test');
 test('Page PLaywright test',async ({page})=>
 {
     await page.goto("https://vlp.thestorywallcafe.com/");
-    await page.locator('#emailId').fill("admin@.com");
+    await page.locator('#emailId').fill("Sandesh@.in");
     await page.locator("[type='password']").fill("");
     await page.locator("[type='submit']").click()
     console.log(await page.getByText('Email Id is invalid.').textContent());
     console.log(await page.getByText("Password is required.").textContent());
  
-    await page.locator('#emailId').fill("admin@vedalekha.com");
+    await page.locator('#emailId').fill("Sandesh@ekra.in");
     await page.locator("[type='password']").fill("12");
     await page.locator("[type='submit']").click()
     console.log(await page.locator('.ng-trigger-flyInOut').textContent());
     await page.waitForTimeout(5000);
 
-    await page.locator('#emailId').fill("admin@vedalekha.com");
-    await page.locator("[type='password']").fill("Admin@123#");
-    await page.locator("[type='submit']").click();
+    await page.locator('#emailId').fill("Sandeshd@ekfrazo.in");
+    await page.locator("[type='password']").fill("1234");
+    await page.locator("[type='submit']").click()
     
     const successMessage = page.locator('[aria-label*="Login"]');
     await expect(successMessage).toBeVisible();
@@ -33,14 +33,14 @@ test('Page PLaywright test',async ({page})=>
     await expect(logoutMessage).toBeVisible({ timeout: 5000 });
     console.log(await logoutMessage.textContent());
 
-    await page.locator('[href="/forgotPassword"]').click();
+    await page.locator('[href="/forgotPassword"]').click()
     await page.locator("#emailId").fill("")
     await page.getByText("Submit").click()
     console.log(await page.getByText("Email Id is required.").textContent());
 
     await page.getByText("Go back to Login").click();
-    await page.locator('#emailId').fill("admin@vedalekha.com");
-    await page.locator("[type='password']").fill("Admin@123#");
+    await page.locator('#emailId').fill("Sandesh@ekfrazo.in");
+    await page.locator("[type='password']").fill("1234");
     await page.locator("[type='submit']").click()
     
 });

@@ -23,4 +23,12 @@ test('Page PLaywright test',async ({page})=>
         window.sessionStorage.setItem('token', value);
     }, token);
 
+
+
+
+
+
+
+
+
 });
