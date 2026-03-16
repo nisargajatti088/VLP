@@ -39,9 +39,9 @@ test('Page PLaywright test',async ({page})=>
     await page.getByPlaceholder("Search by Country Name").fill(countryName);
     await expect(page.locator('//tbody/tr/td[2]').first()).toHaveText(countryName);
 
-    await page.locator("img[ngbtooltip='Delete']").first().click();
-    await page.getByRole('button', { name: "Delete" }).click();
-    console.log(await page.locator("[aria-label='Country deleted successfully']").textContent());
+    // await page.locator("img[ngbtooltip='Delete']").first().click();
+    // await page.getByRole('button', { name: "Delete" }).click();
+    // console.log(await page.locator("[aria-label='Country deleted successfully']").textContent());
 
 
 

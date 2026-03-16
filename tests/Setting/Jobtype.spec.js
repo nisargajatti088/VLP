@@ -27,6 +27,11 @@ test('Job Type test',async ({page})=>
 
     await expect(page.locator('//tbody/tr/td[2]').first()).toHaveText(jobTypeName);
 
+    const arrows = page.locator('.bi-arrow-down');
+    for (let i = 0; i < await arrows.count(); i++) {
+    await arrows.nth(i).click(); 
+    }
+
     await page.locator("//tbody/tr[1]/td[5]/img[1]").click();   
     await page.getByRole('button', { name: "Edit" }).click();
     await page.getByPlaceholder("Enter Job Price").clear();

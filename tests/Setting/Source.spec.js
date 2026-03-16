@@ -22,6 +22,11 @@ test('Page PLaywright test',async ({page})=>
 
     await expect(page.locator("//tbody/tr[1]/td[2]").first()).toHaveText(sourceName);
 
+    const arrows = page.locator('.bi-arrow-down');
+    for (let i = 0; i < await arrows.count(); i++) {
+    await arrows.nth(i).click(); 
+    }
+
     await page.locator("//tbody/tr[1]/td[3]/img[1]").click();
     await page.getByRole('button', { name: "Edit" }).click();
     

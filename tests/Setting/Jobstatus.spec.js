@@ -30,6 +30,11 @@ test('Page PLaywright test',async ({page})=>
     await page.waitForTimeout(1000);
     await expect(page.locator("//tbody/tr/td[3]").last()).toHaveText(jobStatusName);
 
+    const arrows = page.locator('.bi-arrow-down');
+    for (let i = 0; i < await arrows.count(); i++) {
+    await arrows.nth(i).click(); 
+    }
+
     await page.locator("//tbody/tr[1]/td[5]/img[1]").click();
     await page.getByRole('button', { name: "Edit" }).click();   
     await page.getByPlaceholder("Enter Job Status").clear();

@@ -17,8 +17,4 @@ test('Validate login error messages', async ({ page }) => {
 
     await employee.create("Sachin","Jatti","sachi@gmail.com")
 
-
-
-
-
 });

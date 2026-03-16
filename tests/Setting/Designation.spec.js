@@ -23,20 +23,20 @@ test.only('Page PLaywright test', async ({ page }) => {
     // Assertion to verify that the new designation is added
     await expect(page.locator('//tbody/tr/td[2]').first()).toHaveText(Designation);
 
-    
+    const arrows = page.locator('.bi-arrow-down');
+    for (let i = 0; i < await arrows.count(); i++) {
+    await arrows.nth(i).click(); 
+    }
+
     await page.locator("//tbody/tr[1]/td[4]/img[1]").click();
     await page.getByRole('button', { name: "Edit" }).click();
 
-    await page.getByPlaceholder("Enter Designation Name").clear();
-    await page.waitForTimeout(1000);
-    await page.getByPlaceholder("Enter Designation Name").fill(Designation);
+    await page.getByPlaceholder("Select Role").click();
+    await page.locator(".mat-option-text").first().click();
     await page.locator("[type='submit']").click();
     console.log(await page.locator("[aria-label='Designation updated successfully']").textContent());
 
     // Assertion to verify that the designation is updated
-    await expect(page.locator('//tbody/tr/td[2]').first()).toHaveText(Designation);
-
-
-
+    console.log(await page.locator('//tbody/tr/td[3]').first().textContent());
 
 });

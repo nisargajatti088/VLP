@@ -52,6 +52,12 @@ test('Page PLaywright test',async ({page})=>
 
     await expect(page.locator("//tbody/tr/td[3]").first()).toHaveText(email);
 
+
+    const arrows = page.locator('.bi-arrow-down');
+    for (let i = 0; i < await arrows.count(); i++) {
+    await arrows.nth(i).click(); 
+    }
+
     await page.locator(".ng-star-inserted td").first().click();
     await page.getByRole('button',{name:"Edit"} ).click();
     await page.getByPlaceholder('Enter first name').clear();

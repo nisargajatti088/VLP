@@ -21,6 +21,12 @@ test('Page PLaywright test',async ({page})=>
     console.log(await page.locator("div .toast-message").textContent());
 
     await expect(page.locator('//tbody/tr/td[2]').first()).toHaveText(serviceName);
+
+    
+    const arrows = page.locator('.bi-arrow-down');
+    for (let i = 0; i < await arrows.count(); i++) {
+    await arrows.nth(i).click(); 
+    }
     
     await page.locator("//tbody/tr[1]/td[3]/img[1]").click();
     await page.getByRole('button', { name: "Edit" }).click();
