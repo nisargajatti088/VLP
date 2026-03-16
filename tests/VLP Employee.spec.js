@@ -1,11 +1,10 @@
-const { faker } = require('@faker-js/faker');
 const {test,expect} = require('@playwright/test');
 
 test('Page PLaywright test',async ({page})=>
 {
     await page.goto("https://vlp.thestorywallcafe.com/");
-    await page.locator('#emailId').fill("admin@vedalekha.com");
-    await page.locator("[type='password']").fill("Admin@123#");
+    await page.locator('#emailId').fill("Sandeshd@ekfrazo.in");
+    await page.locator("[type='password']").fill("1234");
     await page.locator("[type='submit']").click();
     await page.locator(".sidebar-toggle-fab").click();
     // Click on settings/gear icon
@@ -23,12 +22,9 @@ test('Page PLaywright test',async ({page})=>
     await expect(verification).toHaveText("First Name is required ");
     console.log(await verification.textContent());
 
-    const name= faker.person.firstName();
-    const surname= faker.person.lastName();
-    const email= faker.internet.email();
-    await page.getByPlaceholder('Enter first name').fill(name);
-    await page.getByPlaceholder('Enter last name').fill(surname);
-    await page.getByPlaceholder('Enter email').fill(email);
+    await page.getByPlaceholder('Enter first name').fill("Sachin");
+    await page.getByPlaceholder('Enter last name').fill("Jatti");
+    await page.getByPlaceholder('Enter email').fill("nisarga@gmail.com");
     await page.locator(".mat-datepicker-toggle").first().click();
     await page.locator(".mat-calendar-period-button").click();
     await page.locator(".mat-calendar-body-cell-content").filter({ hasText: '2025' }).click();
@@ -48,23 +44,28 @@ test('Page PLaywright test',async ({page})=>
     await expect(successMessage).toHaveText(" Employee created successfully ");
     console.log(await successMessage.textContent());
 
-    await expect(page.locator("//tbody/tr/td[2]").first()).toHaveText(name);
+    const employeeName = page.locator(".ng-star-inserted td ").filter({ hasText: 'Sachin Jatti' }).first();
+    await expect(employeeName).toBeVisible();
+    console.log(await employeeName.textContent());
 
-    await expect(page.locator("//tbody/tr/td[3]").first()).toHaveText(email);
-
-
-    const arrows = page.locator('.bi-arrow-down');
-    for (let i = 0; i < await arrows.count(); i++) {
-    await arrows.nth(i).click(); 
-    }
+    const employeeemail = page.locator(".ng-star-inserted td ").filter({ hasText: 'nisarga@gmail.com' }).first();
+    await expect(employeeemail).toBeVisible();
+    console.log(await employeeemail.textContent());
 
     await page.locator(".ng-star-inserted td").first().click();
     await page.getByRole('button',{name:"Edit"} ).click();
-    await page.getByPlaceholder('Enter first name').clear();
-    await page.waitForTimeout(1000);
-    await page.getByPlaceholder('Enter first name').fill(name);
+    await page.getByPlaceholder('Enter first name').fill("Sachi");
     await page.getByRole('button',{name:"Update"} ).click();
 
-    await expect(page.locator("//tbody/tr/td[2]").first()).toHaveText(name);
+    const updateMessage = page.locator(".toast-message");
+    await expect(updateMessage).toHaveText(" Employee updated successfully ");
+    console.log(await updateMessage.textContent());
 
+    await page.locator(".ng-star-inserted td").first().click();
+    await page.getByRole('button',{name:" Delete"} ).click();
+    await page.getByRole('button',{name:"Delete"} ).click();
+
+    const deleteMessage = page.locator(".toast-success");
+    await expect(deleteMessage).toHaveText(" Employee deleted successfully ");
+    console.log(await deleteMessage.textContent());
 });
